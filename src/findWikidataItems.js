@@ -1,3 +1,5 @@
+const haversine = require('haversine')
+
 function wikidataRun (str, options, callback) {
   global.fetch('https://query.wikidata.org/sparql?query=' + encodeURIComponent(str),
     {
@@ -32,12 +34,21 @@ module.exports = function findWikidataItems (queries, options, callback) {
     let subQuery = '{'
 
     for (const k in q) {
-      properties[k] = true
-
-      if (q[k].match(/^Q[0-9]+$/)) {
-        subQuery += '?item wdt:' + k + ' wd:' + q[k] + '.\n?item wdt:' + k + ' ?' + k + '.\n'
+      if (k === 'near') {
+        subQuery += 'SERVICE wikibase:around {\n'
+        subQuery += '  ?item wdt:P625 ?P625 .\n'
+        subQuery += '  bd:serviceParam wikibase:center "Point(' + q[k].longitude + ' ' + q[k].latitude + ')"^^geo:wktLiteral .\n'
+        subQuery += '  bd:serviceParam wikibase:radius "' + q[k].maxDistance + '" .\n'
+        subQuery += '}\n'
+        properties.P625 = true
       } else {
-        subQuery += '?item wdt:' + k + ' "' + q[k] + '".\n?item wdt:' + k + ' ?' + k + '.\n'
+        properties[k] = true
+
+        if (q[k].match(/^Q[0-9]+$/)) {
+          subQuery += '?item wdt:' + k + ' wd:' + q[k] + '.\n?item wdt:' + k + ' ?' + k + '.\n'
+        } else {
+          subQuery += '?item wdt:' + k + ' "' + q[k] + '".\n?item wdt:' + k + ' ?' + k + '.\n'
+        }
       }
     }
 
@@ -62,6 +73,22 @@ module.exports = function findWikidataItems (queries, options, callback) {
 
         queries.forEach((q, index) => {
           const matches = Object.keys(q).filter(k => {
+            if (k === 'near') {
+              if ('P625' in item) {
+                const m = item.P625.value.match(/^Point\(([0-9.]+) ([0-9.]+)\)$/)
+                if (!m) {
+                  return false
+                }
+
+                const coord = { latitude: m[2], longitude: m[1] }
+                const distance = haversine(q[k], coord, { 'unit': 'km' })
+
+                return distance <= q[k].maxDistance
+              }
+
+              return false
+            }
+
             if (!(k in item)) {
               return false
             }

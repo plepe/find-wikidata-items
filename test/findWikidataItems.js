@@ -76,4 +76,17 @@ describe('findWikidataItems()', function () {
       done()
     })
   })
+
+  it('search items near coordinates', function (done) {
+    findWikidataItems([
+      { near: { latitude: 48.2, longitude: 16.4, maxDistance: 0.2 } },
+    ],
+    function (err, result) {
+      if (err) { return done(err) }
+      if (!result[0].Q38108999) {
+        assert.fail('does not include Q38108999')
+      }
+      done()
+    })
+  })
 })
