@@ -1,7 +1,7 @@
 {
   "name": "find-wikidata-items",
   "version": "0.1.0",
-  "description": "Find wikidata items either by name or by property values",
+  "description": "Uses query.wikidata.org to retrieve lists of items from Wikidata",
   "main": "src/findWikidataItems.js",
   "directories": {
     "test": "test"
