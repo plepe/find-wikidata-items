@@ -75,10 +75,10 @@ module.exports = function findWikidataItems (queries, options, callback) {
           }
 
           if (!finalResult[index]) {
-            finalResult[index] = []
+            finalResult[index] = {}
           }
 
-          finalResult[index].push(id)
+          finalResult[index][id] = {}
         })
       })
 

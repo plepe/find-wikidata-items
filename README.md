@@ -19,12 +19,16 @@ findWikidataItems(
 Result:
 ```json
 [
-  [
-    "Q721",
-    "Q25169",
-    "Q187655",
-    "Q280418",
+  {
+    "Q721": {},
+    "Q25169": {},
+    "Q187655": {},
+    "Q280418": {},
     ...
-  ]
+  }
 ]
 ```
+
+## API
+
+findWikidataItems(query, options, callback)

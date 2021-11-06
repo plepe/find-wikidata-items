@@ -11,7 +11,7 @@ describe('findWikidataItems()', function () {
     ],
     (err, result) => {
       if (err) { return done(err) }
-      assert.deepEqual(result[0], ['Q37806621'])
+      assert.deepEqual(result[0], { Q37806621: {} })
       done()
     })
   })
@@ -22,7 +22,7 @@ describe('findWikidataItems()', function () {
     ],
     (err, result) => {
       if (err) { return done(err) }
-      assert.deepEqual(result[0], ['Q99619614'])
+      assert.deepEqual(result[0], { Q99619614: {} })
       done()
     })
   })
@@ -34,8 +34,8 @@ describe('findWikidataItems()', function () {
     ],
     (err, result) => {
       if (err) { return done(err) }
-      assert.deepEqual(result[0], ['Q37884974'])
-      assert.deepEqual(result[1], ['Q1534177'])
+      assert.deepEqual(result[0], { Q37884974: {} })
+      assert.deepEqual(result[1], { Q1534177: {} })
       done()
     })
   })
@@ -47,8 +47,8 @@ describe('findWikidataItems()', function () {
     ],
     function (err, result) {
       if (err) { return done(err) }
-      assert.deepEqual(result[0], ['Q41427878'])
-      assert.deepEqual(result[1], ['Q1534177'])
+      assert.deepEqual(result[0], { Q41427878: {} })
+      assert.deepEqual(result[1], { Q1534177: {} })
       done()
     })
   })
@@ -59,7 +59,7 @@ describe('findWikidataItems()', function () {
     ],
     function (err, result) {
       if (err) { return done(err) }
-      assert.deepEqual(result[0], ['Q99619614'])
+      assert.deepEqual(result[0], { Q99619614: {} })
       done()
     })
   })
@@ -70,7 +70,7 @@ describe('findWikidataItems()', function () {
     ],
     function (err, result) {
       if (err) { return done(err) }
-      if (!result[0].includes('Q1643959')) {
+      if (!result[0].Q1643959) {
         assert.fail('does not include Q1643959')
       }
       done()
