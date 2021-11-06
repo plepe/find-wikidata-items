@@ -61,13 +61,17 @@ module.exports = function findWikidataItems (queries, options, callback) {
         delete item.item
 
         queries.forEach((q, index) => {
-          const matches = Object.keys(item).filter(pid => {
-            let value = item[pid].value
-            if (item[pid].type === 'uri') {
-              value = item[pid].value.match(/(Q[0-9]+)$/)[1]
+          const matches = Object.keys(q).filter(k => {
+            if (!(k in item)) {
+              return false
             }
 
-            return q[pid] === value
+            let value = item[k].value
+            if (item[k].type === 'uri') {
+              value = item[k].value.match(/(Q[0-9]+)$/)[1]
+            }
+
+            return q[k] === value
           })
 
           if (!matches.length) {
