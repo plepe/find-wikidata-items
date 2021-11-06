@@ -22,6 +22,7 @@
   "homepage": "https://github.com/plepe/find-wikidata-items#readme",
   "devDependencies": {
     "mocha": "^9.1.3",
+    "node-fetch": "^2.6.6",
     "standard": "^16.0.4"
   }
 }

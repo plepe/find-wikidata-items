@@ -1,5 +1,3 @@
-const wikidata = require('./wikidata')
-
 function wikidataRun (str, options, callback) {
   global.fetch('https://query.wikidata.org/sparql?query=' + encodeURIComponent(str),
     {

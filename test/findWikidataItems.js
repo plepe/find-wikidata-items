@@ -1,6 +1,6 @@
 /* global describe, it */
-const fs = require('fs')
 const assert = require('assert').strict
+global.fetch = require('node-fetch')
 
 const findWikidataItems = require('../src/findWikidataItems')
 
@@ -55,7 +55,7 @@ describe('findWikidataItems()', function () {
 
   it('search item with several properties in the query', function (done) {
     findWikidataItems([
-      { P1028: 'Q99619679', P8430: '61487' },
+      { P1028: 'Q99619679', P8430: '61487' }
     ],
     function (err, result) {
       if (err) { return done(err) }
@@ -66,7 +66,7 @@ describe('findWikidataItems()', function () {
 
   it('search items with multiple results', function (done) {
     findWikidataItems([
-      { P180: 'Q5879' },
+      { P180: 'Q5879' }
     ],
     function (err, result) {
       if (err) { return done(err) }
