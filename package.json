@@ -1,0 +1,22 @@
+{
+  "name": "find-wikidata-items",
+  "version": "0.1.0",
+  "description": "Find wikidata items either by name or by property values",
+  "main": "src/findWikidataItems.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plepe/find-wikidata-items.git"
+  },
+  "author": "Stephan Bösch-Plepelits <skunk@xover.mud.at>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plepe/find-wikidata-items/issues"
+  },
+  "homepage": "https://github.com/plepe/find-wikidata-items#readme"
+}
