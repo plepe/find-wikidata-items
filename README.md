@@ -32,3 +32,6 @@ Result:
 ## API
 
 findWikidataItems(query, options, callback)
+
+Options:
+* 'url': override server query address (default: 'https://query.wikidata.org/sparql?query=')

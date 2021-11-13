@@ -1,7 +1,9 @@
 const haversine = require('haversine')
 
 function wikidataRun (str, options, callback) {
-  global.fetch('https://query.wikidata.org/sparql?query=' + encodeURIComponent(str),
+  let url = ('url' in options ? options.url : 'https://query.wikidata.org/sparql?query=') + encodeURIComponent(str)
+
+  global.fetch(url,
     {
       headers: {
         // lower case to avoid forbidden request headers, see:
