@@ -49,7 +49,7 @@ module.exports = function findWikidataItems (queries, options, callback) {
         if (q[k].match(/^Q[0-9]+$/)) {
           subQuery += '?item wdt:' + k + ' wd:' + q[k] + '.\n?item wdt:' + k + ' ?' + k + '.\n'
         } else {
-          subQuery += '?item wdt:' + k + ' "' + q[k] + '".\n?item wdt:' + k + ' ?' + k + '.\n'
+          subQuery += '?item wdt:' + k + ' "' + q[k].replace(/"/g, '\\"') + '".\n?item wdt:' + k + ' ?' + k + '.\n'
         }
       }
     }
